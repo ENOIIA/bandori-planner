@@ -27,7 +27,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='邦多利控分规划',
+    name='邦多利控分规划器',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -40,4 +40,5 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     icon=None,
+    version='version.txt'
 )
