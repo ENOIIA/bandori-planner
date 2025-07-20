@@ -219,7 +219,6 @@ class MainWindow(QMainWindow):
         plan_coins: list[int] = coin_change(coins, diff)
 
         if not plan_coins:
-            QMessageBox.critical(self, "错误", "无法通过现有的配置组合达成目标pt！")
             return []
 
         combination: list[dict] = []
@@ -242,7 +241,7 @@ class MainWindow(QMainWindow):
 
         combination = self.plan(current_pt, target_pt)
         if not combination:
-            self.ui.challengeResult.setText("无法生成有效方案。")
+            self.ui.challengeResult.setText("无法生成有效方案，请尝试添加更多队伍，或随便打一把以便重新规划。")
             return
 
         # 每局默认0火
@@ -252,7 +251,7 @@ class MainWindow(QMainWindow):
 
         result_str = "最优方案（共游玩 {} 局）：\n".format(len(final_rounds))
         for idx, item in enumerate(final_rounds, start=1):
-            result_str += "局 {} ： {} pt, 配队： {}, 分数范围： {} ~ {}，使用 {} 火\n".format(
+            result_str += "第 {} 局： {} pt, 队伍： {}, 分数范围： {} ~ {}，使用 {} 火\n".format(
                 idx, item["pt"], item["band_name"],
                 item["score_range"][0], item["score_range"][1],
                 item["fire"]
