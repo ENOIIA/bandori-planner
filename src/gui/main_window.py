@@ -139,7 +139,7 @@ class MainWindow(QMainWindow):
             self.pt_achieve_method = set_pt_dict(event_type, self.ui.teamTable)
             return True
         except Exception as e:
-            QMessageBox.critical(self, "错误", f"获取 pt 数据失败: {e}")
+            QMessageBox.critical(self, "错误", f"获取 pt 数据失败：{e}")
             return False
 
     def challenge_live_dict(self) -> None:
