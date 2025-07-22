@@ -1,12 +1,13 @@
 import warnings
 
 from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QMainWindow, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableWidget
 
 from src.gui.GUI import Ui_MainWindow
 from src.utils.arrange_output import merge_fire
-from src.utils.calculate_score import calc_pt_per_game
 from src.utils.dynamic_program import coin_change
+from src.utils.event_type import EventType
+from src.utils.table_operation import set_pt_dict
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -133,78 +134,29 @@ class MainWindow(QMainWindow):
     def delete_row(self, row) -> None:
         self.ui.teamTable.removeRow(row)
 
-    def get_table_data(self) -> list[dict]:
-        data: list = []
-        for row in range(self.ui.teamTable.rowCount()):
-            row_data: dict = {
-                "band_name": self.ui.teamTable.item(row, 0).text(),
-                "bonus": int(self.ui.teamTable.item(row, 1).text()),
-                "achivable_max": int(self.ui.teamTable.item(row, 2).text()),
-                "support_band": int(self.ui.teamTable.item(row, 3).text())
-            }
-            data.append(row_data)
-        return data
-
     def challenge_live_dict(self) -> None:
-        self.add_pt_achieve_method("challenge_live")
+        table: QTableWidget = self.ui.teamTable
+        self.pt_achieve_method = set_pt_dict(EventType.CHALLENGE_LIVE, table)
 
-    def vs_live_dict(self):
-        self.add_pt_achieve_method("vs_live")
+    def vs_live_dict(self) -> None:
+        table: QTableWidget = self.ui.teamTable
+        self.pt_achieve_method = set_pt_dict(EventType.VS_LIVE, table)
 
-    def live_goals_dict(self):
-        self.add_pt_achieve_method("live_goals")
+    def live_goals_dict(self) -> None:
+        table: QTableWidget = self.ui.teamTable
+        set_pt_dict(EventType.LIVE_GOALS, table)
 
-    def mission_live_dict(self):
-        self.add_pt_achieve_method("mission_live")
+    def mission_live_dict(self) -> None:
+        table: QTableWidget = self.ui.teamTable
+        set_pt_dict(EventType.MISSION_LIVE, table)
 
-    def team_live_festival_dict(self):
-        self.add_pt_achieve_method("team_live_festival")
+    def team_live_festival_dict(self) -> None:
+        table: QTableWidget = self.ui.teamTable
+        set_pt_dict(EventType.TEAM_LIVE_FESTIVAL, table)
 
-    def medley_live_dict(self):
-        self.add_pt_achieve_method("medley_live")
-
-    # 遍历可达分数，正向计算用每种配队能打出哪些pt
-    def add_pt_achieve_method(self, event_type: str) -> None:
-        # 重置pt达成方法的字典，防止重复添加
-        self.pt_achieve_method: dict = {}
-        bands_info: list = self.get_table_data()
-
-        score_step: int
-        for band_info in bands_info:
-
-            # 不同活动类型的分数步长不一样
-            if event_type == "challenge_live":
-                score_step = 50000
-            elif event_type == "vs_live":
-                score_step = 6500
-            elif event_type == "live_goals":
-                score_step = 26000
-            elif event_type == "mission_live":
-                score_step = 15000
-            elif event_type == "team_live_festival":
-                score_step = 6500
-            elif event_type == "medley_live":
-                score_step = 18500
-            else:
-                raise RuntimeError("未知的活动类型！")
-
-            band_name: str = band_info["band_name"]
-            bonus: float = (band_info["bonus"] + 100) / 100
-            achivable_max: int = band_info["achivable_max"]
-            support_band: int = band_info["support_band"]
-
-            for score in range(0, achivable_max, score_step):
-                pt: int = calc_pt_per_game(score, bonus, support_band, event_type)
-                lower_limit: int = score
-                upper_limit: int = score + score_step - 1
-
-                # 如果某个pt已存在某种达成方式，与已有的方式进行比较
-                # 如果已有方式分数下限更高，直接跳过
-                if (pt in self.pt_achieve_method) and (self.pt_achieve_method[pt]["lower_limit"] > lower_limit):
-                    continue
-                # 如果新方式分数下限更高，更新达成方式
-                else:
-                    self.pt_achieve_method[pt]: dict = {"band_name": band_name, "lower_limit": lower_limit, "upper_limit": upper_limit}
+    def medley_live_dict(self) -> None:
+        table: QTableWidget = self.ui.teamTable
+        set_pt_dict(EventType.MEDLEY_LIVE, table)
 
     def plan(self, current_pt: int, target_pt: int) -> list[dict]:
         diff: int = target_pt - current_pt
