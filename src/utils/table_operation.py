@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QTableWidget
+from PyQt6.QtWidgets import QTableWidget, QTableWidgetItem
 
 from src.utils.calculate_score import calc_pt_per_game
 from src.utils.event_type import EventType
@@ -103,6 +103,8 @@ def add_pt_achieve_method(achivable_max: int, band_name: str, bonus: float, even
 
 # 遍历可达分数，正向计算用每种配队能打出哪些pt
 def set_pt_dict(event_type: EventType, table: QTableWidget) -> dict:
+    if not validate_table_data(table, event_type):
+        raise RuntimeError("表格存在空单元格，请检查输入内容是否完整！")
     pt_dict: dict = {}
     if event_type == EventType.MISSION_LIVE:
         pt_dict = set_pt_dict_with_support_team(event_type, table, pt_dict)
@@ -117,3 +119,17 @@ def set_pt_dict(event_type: EventType, table: QTableWidget) -> dict:
     else:
         raise RuntimeError("未知的活动类型！")
     return pt_dict
+
+
+def validate_table_data(table: QTableWidget, event_type: EventType) -> bool:
+
+    # 必填列：0: band_name, 1: bonus, 2: achivable_max
+    required_columns: list = [0, 1, 2]
+    if event_type == EventType.MISSION_LIVE:
+        required_columns.append(3)
+    for row in range(table.rowCount()):
+        for col in required_columns:
+            item: QTableWidgetItem = table.item(row, col)
+            if item is None or item.text().strip() == "":
+                return False
+    return True
