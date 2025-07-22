@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QTableWidget, QTableWidgetItem
 
-from src.utils.calculate_score import calc_pt_per_game
+from src.utils.calculate_pt import calc_pt_per_game
 from src.utils.event_type import EventType
 
 
