@@ -10,9 +10,14 @@ class EventType(Enum):
     MEDLEY_LIVE = ("medley_live", 18500)
 
     @property
+    def type_name(self) -> str:
+        return self.value[0]
+
+    @property
     def score_step(self) -> int:
         return self.value[1]
 
     @property
-    def type_name(self) -> str:
-        return self.value[0]
+    def requires_support(self) -> bool:
+        # 只有任务 Live 需要 support_team 数据
+        return self == EventType.MISSION_LIVE
