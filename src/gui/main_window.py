@@ -1,7 +1,7 @@
 import warnings
 
 from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QMainWindow, QMessageBox, QTableWidget
+from PyQt6.QtWidgets import QMainWindow, QMessageBox, QLineEdit, QTextEdit
 
 from src.gui.GUI import Ui_MainWindow
 from src.utils.arrange_output import merge_fire
@@ -134,29 +134,31 @@ class MainWindow(QMainWindow):
     def delete_row(self, row) -> None:
         self.ui.teamTable.removeRow(row)
 
+    def update_pt_dict(self, event_type: EventType) -> bool:
+        try:
+            self.pt_achieve_method = set_pt_dict(event_type, self.ui.teamTable)
+            return True
+        except Exception as e:
+            QMessageBox.critical(self, "错误", f"获取 pt 数据失败: {e}")
+            return False
+
     def challenge_live_dict(self) -> None:
-        table: QTableWidget = self.ui.teamTable
-        self.pt_achieve_method = set_pt_dict(EventType.CHALLENGE_LIVE, table)
+        self.update_pt_dict(EventType.CHALLENGE_LIVE)
 
     def vs_live_dict(self) -> None:
-        table: QTableWidget = self.ui.teamTable
-        self.pt_achieve_method = set_pt_dict(EventType.VS_LIVE, table)
+        self.update_pt_dict(EventType.VS_LIVE)
 
     def live_goals_dict(self) -> None:
-        table: QTableWidget = self.ui.teamTable
-        set_pt_dict(EventType.LIVE_GOALS, table)
+        self.update_pt_dict(EventType.LIVE_GOALS)
 
     def mission_live_dict(self) -> None:
-        table: QTableWidget = self.ui.teamTable
-        set_pt_dict(EventType.MISSION_LIVE, table)
+        self.update_pt_dict(EventType.MISSION_LIVE)
 
     def team_live_festival_dict(self) -> None:
-        table: QTableWidget = self.ui.teamTable
-        set_pt_dict(EventType.TEAM_LIVE_FESTIVAL, table)
+        self.update_pt_dict(EventType.TEAM_LIVE_FESTIVAL)
 
     def medley_live_dict(self) -> None:
-        table: QTableWidget = self.ui.teamTable
-        set_pt_dict(EventType.MEDLEY_LIVE, table)
+        self.update_pt_dict(EventType.MEDLEY_LIVE)
 
     def plan(self, current_pt: int, target_pt: int) -> list[dict]:
         diff: int = target_pt - current_pt
@@ -183,22 +185,21 @@ class MainWindow(QMainWindow):
             })
         return combination
 
-    def show_plan(self) -> None:
+    def show_plan(self, current_edit: QLineEdit, target_edit: QLineEdit, result_widget: QTextEdit) -> None:
         try:
-            current_pt = int(self.ui.challengeCurrentEdit.text().strip())
-            target_pt = int(self.ui.challengeTargetEdit.text().strip())
+            current_pt = int(current_edit.text().strip())
+            target_pt = int(target_edit.text().strip())
         except ValueError:
             QMessageBox.critical(self, "错误", "请输入有效的整数 pt 数值。")
             return
 
         combination = self.plan(current_pt, target_pt)
         if not combination:
-            self.ui.challengeResult.setText("无法生成有效方案，请尝试添加更多队伍，或随便打一把以便重新规划。")
+            result_widget.setText("无法生成有效方案，请尝试添加更多队伍，或随便打一把以便重新规划。")
             return
 
         # 每局默认0火
         rounds = [{**item, "fire": 0} for item in combination]
-        # 调用合并火数函数
         final_rounds = merge_fire(rounds)
 
         result_str = "最优方案（共游玩 {} 局）：\n".format(len(final_rounds))
@@ -208,28 +209,28 @@ class MainWindow(QMainWindow):
                 item["score_range"][0], item["score_range"][1],
                 item["fire"]
             )
-        self.ui.challengeResult.setText(result_str)
+        result_widget.setText(result_str)
 
     def plan_challenge_live(self) -> None:
         self.challenge_live_dict()
-        self.show_plan()
+        self.show_plan(self.ui.challengeCurrentEdit, self.ui.challengeTargetEdit, self.ui.challengeResult)
 
     def plan_vs_live(self) -> None:
         self.vs_live_dict()
-        self.show_plan()
+        self.show_plan(self.ui.vsCurrentEdit, self.ui.vsTargetEdit, self.ui.vsResult)
 
     def plan_live_goals(self) -> None:
         self.live_goals_dict()
-        self.show_plan()
+        self.show_plan(self.ui.goalCurrentEdit, self.ui.goalTargetEdit, self.ui.goalResult)
 
     def plan_mission_live(self) -> None:
         self.mission_live_dict()
-        self.show_plan()
+        self.show_plan(self.ui.missionCurrentEdit, self.ui.missionTargetEdit, self.ui.missionResult)
 
     def plan_team_live_festival(self) -> None:
         self.team_live_festival_dict()
-        self.show_plan()
+        self.show_plan(self.ui.festivalCurrentEdit, self.ui.festivalTargetEdit, self.ui.festivalResult)
 
     def plan_medley_live(self) -> None:
         self.medley_live_dict()
-        self.show()
+        self.show_plan(self.ui.medleyCurrentEdit, self.ui.medleyTargetEdit, self.ui.medleyResult)
