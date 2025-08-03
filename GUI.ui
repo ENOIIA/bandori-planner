@@ -54,7 +54,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="teamConfigButton">
+          <widget class="QPushButton" name="teamConfigBtn">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -73,7 +73,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="autoPlanButton">
+          <widget class="QPushButton" name="autoPlanBtn">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -89,7 +89,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="settingButton">
+          <widget class="QPushButton" name="settingBtn">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -172,7 +172,7 @@
                  </widget>
                 </item>
                 <item row="1" column="4">
-                 <widget class="QPushButton" name="addButton">
+                 <widget class="QPushButton" name="addBtn">
                   <property name="text">
                    <string>添加</string>
                   </property>
@@ -292,7 +292,7 @@
                 <enum>Qt::LeftToRight</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="challengeTab">
                 <attribute name="title">
@@ -314,7 +314,7 @@
                   </widget>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QPushButton" name="challengeStartCalc">
+                  <widget class="QPushButton" name="challengeStartCalcBtn">
                    <property name="text">
                     <string>开始计算</string>
                    </property>
@@ -374,7 +374,7 @@
                   <widget class="QLineEdit" name="vsTargetEdit"/>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QPushButton" name="vsStartCalc">
+                  <widget class="QPushButton" name="vsStartCalcBtn">
                    <property name="text">
                     <string>开始计算</string>
                    </property>
@@ -408,7 +408,7 @@
                   </widget>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QPushButton" name="goalStartCalc">
+                  <widget class="QPushButton" name="goalStartCalcBtn">
                    <property name="text">
                     <string>开始计算</string>
                    </property>
@@ -468,7 +468,7 @@
                   <widget class="QLineEdit" name="missionTargetEdit"/>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QPushButton" name="missionStartCalc">
+                  <widget class="QPushButton" name="missionStartCalcBtn">
                    <property name="text">
                     <string>开始计算</string>
                    </property>
@@ -518,7 +518,7 @@
                   <widget class="QLineEdit" name="festivalTargetEdit"/>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QPushButton" name="festivalStartCalc">
+                  <widget class="QPushButton" name="festivalStartCalcBtn">
                    <property name="text">
                     <string>开始计算</string>
                    </property>
@@ -565,7 +565,7 @@
                   <widget class="QLineEdit" name="medleyTargetEdit"/>
                  </item>
                  <item row="0" column="4">
-                  <widget class="QPushButton" name="medleyStartCalc">
+                  <widget class="QPushButton" name="medleyStartCalcBtn">
                    <property name="text">
                     <string>开始计算</string>
                    </property>
@@ -620,31 +620,31 @@
   <tabstop>bonusEdit</tabstop>
   <tabstop>achievableMaxEdit</tabstop>
   <tabstop>supportTeamEdit</tabstop>
-  <tabstop>addButton</tabstop>
-  <tabstop>teamConfigButton</tabstop>
-  <tabstop>autoPlanButton</tabstop>
-  <tabstop>settingButton</tabstop>
+  <tabstop>addBtn</tabstop>
+  <tabstop>teamConfigBtn</tabstop>
+  <tabstop>autoPlanBtn</tabstop>
+  <tabstop>settingBtn</tabstop>
   <tabstop>teamTable</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>challengeCurrentEdit</tabstop>
   <tabstop>challengeTargetEdit</tabstop>
-  <tabstop>challengeStartCalc</tabstop>
+  <tabstop>challengeStartCalcBtn</tabstop>
   <tabstop>challengeResult</tabstop>
   <tabstop>vsCurrentEdit</tabstop>
   <tabstop>vsTargetEdit</tabstop>
-  <tabstop>vsStartCalc</tabstop>
+  <tabstop>vsStartCalcBtn</tabstop>
   <tabstop>vsResult</tabstop>
   <tabstop>goalCurrentEdit</tabstop>
   <tabstop>goalTargetEdit</tabstop>
-  <tabstop>goalStartCalc</tabstop>
+  <tabstop>goalStartCalcBtn</tabstop>
   <tabstop>goalResult</tabstop>
   <tabstop>missionCurrentEdit</tabstop>
   <tabstop>missionTargetEdit</tabstop>
-  <tabstop>missionStartCalc</tabstop>
+  <tabstop>missionStartCalcBtn</tabstop>
   <tabstop>missionResult</tabstop>
   <tabstop>festivalCurrentEdit</tabstop>
   <tabstop>festivalTargetEdit</tabstop>
-  <tabstop>festivalStartCalc</tabstop>
+  <tabstop>festivalStartCalcBtn</tabstop>
   <tabstop>festivalResult</tabstop>
  </tabstops>
  <resources/>

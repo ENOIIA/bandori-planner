@@ -22,23 +22,23 @@ class MainWindow(QMainWindow):
         self.pt_achieve_method: dict = {}
 
         # 初始化按钮状态
-        self.ui.teamConfigButton.setChecked(True)
+        self.ui.teamConfigBtn.setChecked(True)
 
         # 功能切换按钮
-        self.ui.teamConfigButton.clicked.connect(self.switch_to_page0)
-        self.ui.autoPlanButton.clicked.connect(self.switch_to_page1)
-        self.ui.settingButton.clicked.connect(self.switch_to_page2)
+        self.ui.teamConfigBtn.clicked.connect(self.switch_to_page0)
+        self.ui.autoPlanBtn.clicked.connect(self.switch_to_page1)
+        self.ui.settingBtn.clicked.connect(self.switch_to_page2)
 
         # 添加配对按钮
-        self.ui.addButton.clicked.connect(self.add_row_to_table)
+        self.ui.addBtn.clicked.connect(self.add_row_to_table)
 
         # 开始计算按钮
-        self.ui.challengeStartCalc.clicked.connect(self.plan_challenge_live)
-        self.ui.vsStartCalc.clicked.connect(self.plan_vs_live)
-        self.ui.goalStartCalc.clicked.connect(self.plan_live_goals)
-        self.ui.missionStartCalc.clicked.connect(self.plan_mission_live)
-        self.ui.festivalStartCalc.clicked.connect(self.plan_team_live_festival)
-        self.ui.medleyStartCalc.clicked.connect(self.plan_medley_live)
+        self.ui.challengeStartCalcBtn.clicked.connect(self.plan_challenge_live)
+        self.ui.vsStartCalcBtn.clicked.connect(self.plan_vs_live)
+        self.ui.goalStartCalcBtn.clicked.connect(self.plan_live_goals)
+        self.ui.missionStartCalcBtn.clicked.connect(self.plan_mission_live)
+        self.ui.festivalStartCalcBtn.clicked.connect(self.plan_team_live_festival)
+        self.ui.medleyStartCalcBtn.clicked.connect(self.plan_medley_live)
 
         # 设置表格列宽与行高
         self.ui.teamTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
@@ -47,21 +47,21 @@ class MainWindow(QMainWindow):
 
     def switch_to_page0(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.teamConfigButton.setChecked(True)
-        self.ui.autoPlanButton.setChecked(False)
-        self.ui.settingButton.setChecked(False)
+        self.ui.teamConfigBtn.setChecked(True)
+        self.ui.autoPlanBtn.setChecked(False)
+        self.ui.settingBtn.setChecked(False)
 
     def switch_to_page1(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(1)
-        self.ui.teamConfigButton.setChecked(False)
-        self.ui.autoPlanButton.setChecked(True)
-        self.ui.settingButton.setChecked(False)
+        self.ui.teamConfigBtn.setChecked(False)
+        self.ui.autoPlanBtn.setChecked(True)
+        self.ui.settingBtn.setChecked(False)
 
     def switch_to_page2(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(2)
-        self.ui.teamConfigButton.setChecked(False)
-        self.ui.autoPlanButton.setChecked(False)
-        self.ui.settingButton.setChecked(True)
+        self.ui.teamConfigBtn.setChecked(False)
+        self.ui.autoPlanBtn.setChecked(False)
+        self.ui.settingBtn.setChecked(True)
 
     def add_row_to_table(self) -> None:
         band_name: str = self.ui.bandNameEdit.text()
