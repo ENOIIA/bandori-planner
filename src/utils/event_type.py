@@ -19,5 +19,5 @@ class EventType(Enum):
 
     @property
     def requires_support(self) -> bool:
-        # 只有任务 Live 需要 support_team 数据
+        # 只有任务 Live 需要 support_band 数据
         return self == EventType.MISSION_LIVE

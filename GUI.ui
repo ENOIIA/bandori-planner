@@ -14,11 +14,11 @@
    <string>邦邦控分规划</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QGridLayout" name="gridLayout_9">
     <property name="sizeConstraint">
      <enum>QLayout::SetNoConstraint</enum>
     </property>
-    <item>
+    <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
        <number>0</number>
@@ -54,7 +54,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="teamConfigBtn">
+          <widget class="QPushButton" name="bandConfigBtn">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -140,10 +140,10 @@
            <property name="currentIndex">
             <number>0</number>
            </property>
-           <widget class="QWidget" name="teamPage">
+           <widget class="QWidget" name="bandPage">
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QFrame" name="teamUpFrame">
+              <widget class="QFrame" name="bandUpFrame">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -206,7 +206,7 @@
                  </widget>
                 </item>
                 <item row="0" column="3">
-                 <widget class="QLabel" name="supportTeamLabel">
+                 <widget class="QLabel" name="supportBandLabel">
                   <property name="text">
                    <string>副队综合力</string>
                   </property>
@@ -226,7 +226,7 @@
                  </widget>
                 </item>
                 <item row="1" column="3">
-                 <widget class="QLineEdit" name="supportTeamEdit">
+                 <widget class="QLineEdit" name="supportBandEdit">
                   <property name="placeholderText">
                    <string>可留空</string>
                   </property>
@@ -236,7 +236,33 @@
               </widget>
              </item>
              <item>
-              <widget class="QTableWidget" name="teamTable">
+              <widget class="QFrame" name="frame">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_10">
+                <item row="0" column="1">
+                 <widget class="QPushButton" name="saveBandBtn">
+                  <property name="text">
+                   <string>保存队伍配置</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QPushButton" name="loadBandBtn">
+                  <property name="text">
+                   <string>加载队伍配置</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="bandTable">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -619,12 +645,12 @@
   <tabstop>bandNameEdit</tabstop>
   <tabstop>bonusEdit</tabstop>
   <tabstop>achievableMaxEdit</tabstop>
-  <tabstop>supportTeamEdit</tabstop>
+  <tabstop>supportBandEdit</tabstop>
   <tabstop>addBtn</tabstop>
-  <tabstop>teamConfigBtn</tabstop>
+  <tabstop>bandConfigBtn</tabstop>
   <tabstop>autoPlanBtn</tabstop>
   <tabstop>settingBtn</tabstop>
-  <tabstop>teamTable</tabstop>
+  <tabstop>bandTable</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>challengeCurrentEdit</tabstop>
   <tabstop>challengeTargetEdit</tabstop>

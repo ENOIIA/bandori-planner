@@ -22,10 +22,10 @@ class MainWindow(QMainWindow):
         self.pt_achieve_method: dict = {}
 
         # 初始化按钮状态
-        self.ui.teamConfigBtn.setChecked(True)
+        self.ui.bandConfigBtn.setChecked(True)
 
         # 功能切换按钮
-        self.ui.teamConfigBtn.clicked.connect(self.switch_to_page0)
+        self.ui.bandConfigBtn.clicked.connect(self.switch_to_page0)
         self.ui.autoPlanBtn.clicked.connect(self.switch_to_page1)
         self.ui.settingBtn.clicked.connect(self.switch_to_page2)
 
@@ -41,25 +41,25 @@ class MainWindow(QMainWindow):
         self.ui.medleyStartCalcBtn.clicked.connect(self.plan_medley_live)
 
         # 设置表格列宽与行高
-        self.ui.teamTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.ui.teamTable.horizontalHeader().setStretchLastSection(True)
-        self.ui.teamTable.verticalHeader().setMinimumSectionSize(60)
+        self.ui.bandTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.ui.bandTable.horizontalHeader().setStretchLastSection(True)
+        self.ui.bandTable.verticalHeader().setMinimumSectionSize(60)
 
     def switch_to_page0(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.teamConfigBtn.setChecked(True)
+        self.ui.bandConfigBtn.setChecked(True)
         self.ui.autoPlanBtn.setChecked(False)
         self.ui.settingBtn.setChecked(False)
 
     def switch_to_page1(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(1)
-        self.ui.teamConfigBtn.setChecked(False)
+        self.ui.bandConfigBtn.setChecked(False)
         self.ui.autoPlanBtn.setChecked(True)
         self.ui.settingBtn.setChecked(False)
 
     def switch_to_page2(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(2)
-        self.ui.teamConfigBtn.setChecked(False)
+        self.ui.bandConfigBtn.setChecked(False)
         self.ui.autoPlanBtn.setChecked(False)
         self.ui.settingBtn.setChecked(True)
 
@@ -67,18 +67,18 @@ class MainWindow(QMainWindow):
         band_name: str = self.ui.bandNameEdit.text()
         bonus: str = self.ui.bonusEdit.text()
         achivable_max: str = self.ui.achievableMaxEdit.text()
-        support_team: str = self.ui.supportTeamEdit.text().strip() or ''
+        support_band: str = self.ui.supportBandEdit.text().strip() or ''
 
-        inputs: list = [band_name, bonus, achivable_max, support_team]
+        inputs: list = [band_name, bonus, achivable_max, support_band]
 
         if self.validate_input_band(inputs):
-            row_position: int = self.ui.teamTable.rowCount()
-            self.ui.teamTable.insertRow(row_position)
+            row_position: int = self.ui.bandTable.rowCount()
+            self.ui.bandTable.insertRow(row_position)
 
             # 添加数据列
             for col, text in enumerate(inputs):
                 item = QtWidgets.QTableWidgetItem(text)
-                self.ui.teamTable.setItem(row_position, col, item)
+                self.ui.bandTable.setItem(row_position, col, item)
 
             # 添加操作列
             btn_widget = QtWidgets.QWidget()
@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
             btn_layout.addWidget(delete_btn)
             btn_widget.setLayout(btn_layout)
 
-            self.ui.teamTable.setCellWidget(row_position, 4, btn_widget)
+            self.ui.bandTable.setCellWidget(row_position, 4, btn_widget)
 
             # 清空输入框
             self.clear_inputs()
@@ -129,14 +129,14 @@ class MainWindow(QMainWindow):
         self.ui.bandNameEdit.clear()
         self.ui.bonusEdit.clear()
         self.ui.achievableMaxEdit.clear()
-        self.ui.supportTeamEdit.clear()
+        self.ui.supportBandEdit.clear()
 
     def delete_row(self, row) -> None:
-        self.ui.teamTable.removeRow(row)
+        self.ui.bandTable.removeRow(row)
 
     def update_pt_dict(self, event_type: EventType) -> bool:
         try:
-            self.pt_achieve_method = set_pt_dict(event_type, self.ui.teamTable)
+            self.pt_achieve_method = set_pt_dict(event_type, self.ui.bandTable)
             return True
         except Exception as e:
             QMessageBox.critical(self, "错误", f"获取 pt 数据失败：{e}")
