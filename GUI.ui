@@ -138,7 +138,7 @@
          <item>
           <widget class="QStackedWidget" name="stackedWidget">
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="bandPage">
             <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -318,7 +318,7 @@
                 <enum>Qt::LeftToRight</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="challengeTab">
                 <attribute name="title">
@@ -647,10 +647,12 @@
   <tabstop>achievableMaxEdit</tabstop>
   <tabstop>supportBandEdit</tabstop>
   <tabstop>addBtn</tabstop>
+  <tabstop>loadBandBtn</tabstop>
+  <tabstop>saveBandBtn</tabstop>
+  <tabstop>bandTable</tabstop>
   <tabstop>bandConfigBtn</tabstop>
   <tabstop>autoPlanBtn</tabstop>
   <tabstop>settingBtn</tabstop>
-  <tabstop>bandTable</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>challengeCurrentEdit</tabstop>
   <tabstop>challengeTargetEdit</tabstop>
@@ -672,6 +674,10 @@
   <tabstop>festivalTargetEdit</tabstop>
   <tabstop>festivalStartCalcBtn</tabstop>
   <tabstop>festivalResult</tabstop>
+  <tabstop>medleyCurrentEdit</tabstop>
+  <tabstop>medleyTargetEdit</tabstop>
+  <tabstop>medleyStartCalcBtn</tabstop>
+  <tabstop>medleyResult</tabstop>
  </tabstops>
  <resources/>
  <connections/>
