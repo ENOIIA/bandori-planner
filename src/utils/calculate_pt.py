@@ -22,7 +22,7 @@ def live_goals_pt(score: int, bonus: float) -> int:
 
 # 任务Live
 def mission_live_pt(score: int, bonus: float, support_band: int) -> int:
-    pt = floor((120 + floor(score / 15000)) * bonus) + floor(support_band)
+    pt = floor((120 + floor(score / 15000)) * bonus) + floor(support_band / 3000)
     return pt
 
 
