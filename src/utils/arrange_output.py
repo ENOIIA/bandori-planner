@@ -17,7 +17,9 @@ def merge_fire(rounds: list[dict]) -> list[dict]:
             num_merge = count // 5
             remainder = count % 5
             for _ in range(num_merge):
-                merged_rounds.append({**current, "fire": 1})
+                merged = {**current, "fire": 1}
+                merged["pt"] = current["pt"] * 5  # 1火pt是0火的5倍
+                merged_rounds.append(merged)
             for _ in range(remainder):
                 merged_rounds.append({**current, "fire": 0})
         else:
@@ -41,11 +43,15 @@ def merge_fire(rounds: list[dict]) -> list[dict]:
             count = len(group)
             # 优先合并3局为3火
             while count >= 3:
-                final_rounds.append({**current, "fire": 3})
+                merged = {**current, "fire": 3}
+                merged["pt"] = current["pt"] * 3  # 3火pt是1火的3倍
+                final_rounds.append(merged)
                 count -= 3
             # 其次合并2局为2火
             while count >= 2:
-                final_rounds.append({**current, "fire": 2})
+                merged = {**current, "fire": 2}
+                merged["pt"] = current["pt"] * 2  # 2火pt是1火的2倍
+                final_rounds.append(merged)
                 count -= 2
             # 其余保持1火
             for _ in range(count):
