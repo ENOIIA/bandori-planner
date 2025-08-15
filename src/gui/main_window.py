@@ -8,6 +8,7 @@ from src.utils.arrange_output import merge_fire
 from src.utils.dynamic_program import coin_change
 from src.utils.event_type import EventType
 from src.utils.table_operation import set_pt_dict
+from src.utils.json_operation import load_band_from_json, save_band_as_json
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -29,8 +30,10 @@ class MainWindow(QMainWindow):
         self.ui.autoPlanBtn.clicked.connect(self.switch_to_page1)
         self.ui.settingBtn.clicked.connect(self.switch_to_page2)
 
-        # 添加配对按钮
-        self.ui.addBtn.clicked.connect(self.add_row_to_table)
+        # 添加、加载、保存配队按钮
+        self.ui.addBandBtn.clicked.connect(self.add_row_to_table)
+        self.ui.loadBandBtn.clicked.connect(self.load_band)
+        self.ui.saveBandBtn.clicked.connect(self.save_band)
 
         # 开始计算按钮
         self.ui.challengeStartCalcBtn.clicked.connect(self.plan_challenge_live)
@@ -234,3 +237,9 @@ class MainWindow(QMainWindow):
     def plan_medley_live(self) -> None:
         self.medley_live_dict()
         self.show_plan(self.ui.medleyCurrentEdit, self.ui.medleyTargetEdit, self.ui.medleyResult)
+
+    def load_band(self) -> None:
+        load_band_from_json(self.ui.bandTable)
+
+    def save_band(self) -> None:
+        save_band_as_json(self.ui.bandTable)
