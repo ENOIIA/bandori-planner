@@ -172,7 +172,7 @@
                  </widget>
                 </item>
                 <item row="1" column="4">
-                 <widget class="QPushButton" name="addBtn">
+                 <widget class="QPushButton" name="addBandBtn">
                   <property name="text">
                    <string>添加</string>
                   </property>
@@ -293,7 +293,7 @@
                </column>
                <column>
                 <property name="text">
-                 <string>新建列</string>
+                 <string>可达最高分</string>
                 </property>
                </column>
                <column>
@@ -646,7 +646,7 @@
   <tabstop>bonusEdit</tabstop>
   <tabstop>achievableMaxEdit</tabstop>
   <tabstop>supportBandEdit</tabstop>
-  <tabstop>addBtn</tabstop>
+  <tabstop>addBandBtn</tabstop>
   <tabstop>loadBandBtn</tabstop>
   <tabstop>saveBandBtn</tabstop>
   <tabstop>bandTable</tabstop>
