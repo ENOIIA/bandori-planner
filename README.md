@@ -27,6 +27,7 @@
             ├── calculate_pt.py        // 根据不同活动类型计算pt
             ├── dynamic_program.py     // 动态规划问题求解
             ├── event_type.py          // 活动类型的枚举类
+            ├── json_operation.py      // json文件操作的函数
             └── table_operation.py     // 表格操作的相关函数
  
 # 使用说明
