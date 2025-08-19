@@ -619,12 +619,28 @@
            <widget class="QWidget" name="instructionPage">
             <layout class="QGridLayout" name="gridLayout_8">
              <item row="0" column="0">
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="bilibiliLabel">
                <property name="text">
-                <string>开发中</string>
+                <string>&lt;a href='https://www.bilibili.com/opus/1102846884694720534?spm_id_from=333.40164'&gt;B站专栏&lt;/a&gt;</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="githubLabel">
+               <property name="text">
+                <string>&lt;a href='https://github.com/ENOIIA/bandori-planner'&gt;GitHub主页&lt;/a&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
                </property>
               </widget>
              </item>

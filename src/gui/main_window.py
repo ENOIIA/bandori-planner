@@ -48,6 +48,10 @@ class MainWindow(QMainWindow):
         self.ui.bandTable.horizontalHeader().setStretchLastSection(True)
         self.ui.bandTable.verticalHeader().setMinimumSectionSize(60)
 
+        # 设置超链接样式
+        self.ui.bilibiliLabel.setText("<a href='https://www.bilibili.com/opus/1102846884694720534?spm_id_from=333.40164' style='color: #ff79c6; text-decoration: none;'>B站专栏</a>")
+        self.ui.githubLabel.setText("<a href='https://github.com/ENOIIA/bandori-planner' style='color: #ff79c6; text-decoration: none;'>GitHub主页</a>")
+
     def switch_to_page0(self) -> None:
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.bandConfigBtn.setChecked(True)
